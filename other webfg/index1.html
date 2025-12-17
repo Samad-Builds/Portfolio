@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Artisan Bakery - Handcrafted Bread & Pastries</title>
+    <meta name="description" content="Artisan Bakery - Fresh handcrafted bread, pastries, and custom cakes baked daily in our neighborhood.">
+    <meta name="author" content="Artisan Bakery">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4a574;
+            --secondary-color: #8b6f47;
+            --dark-bg: #1a1410;
+            --light-text: #f5f1e8;
+            --accent-color: #c99d5c;
+            --text-muted: #b8a590;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2a1f15 100%);
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            margin-top: 150px;
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #2a1f15 100%);
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .hero h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #3a2f25;
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #2a1f15 0%, #1a1410 100%);
+            padding: 2rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #2a1f15 0%, #1a1410 100%);
+            padding: 2rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-family: 'Merriweather', serif;
+        }
+
+        .hours-section {
+            background: linear-gradient(135deg, #2a1f15 0%, #1a1410 100%);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .hours-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #3a2f25;
+            color: var(--text-muted);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list span:first-child {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .contact-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Merriweather', serif;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #0f0c08;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hours-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">🍞 Artisan Bakery</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Handcrafted Bread & Pastries</h1>
+            <p class="hero-subtitle">Baked fresh daily with the finest ingredients</p>
+            <a href="#contact" class="cta-button">Order Today</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Our Specialty Products</h2>
+            <p class="section-subtitle">Each item is crafted with love and premium ingredients</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🥖</div>
+                    <h3>Sourdough Bread</h3>
+                    <p>Traditional sourdough fermented for 48 hours with a perfect crust and tangy flavor. Perfect for any occasion.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🥐</div>
+                    <h3>French Croissants</h3>
+                    <p>Buttery layers of laminated dough baked to golden perfection. Crispy outside, flaky inside.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🍰</div>
+                    <h3>Custom Cakes</h3>
+                    <p>Personalized cakes for any celebration. We use organic eggs and Belgian chocolate in our recipes.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🧁</div>
+                    <h3>Artisan Pastries</h3>
+                    <p>Seasonal pastries including Danish, eclairs, and tarts made fresh every morning.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🍞</div>
+                    <h3>Whole Grain Loaves</h3>
+                    <p>Hearty and nutritious whole grain breads with seeds and nuts. Perfect for health-conscious customers.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🧈</div>
+                    <h3>Butter & Spreads</h3>
+                    <p>Artisanal spreads including house-made jam, organic honey, and cultured butter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Our Bakery</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A Family Tradition Since 1998</h3>
+                    <p>Founded by Maria Rossi, Artisan Bakery has been a neighborhood staple for over 25 years. What started as a small kitchen passion has grown into a beloved community destination.</p>
+                    <p>We believe in using only the finest ingredients: organic flour from local mills, free-range eggs, European butter, and natural starters. Every loaf is handcrafted with care and baked fresh daily.</p>
+                    <p>Our commitment to quality means no artificial preservatives, no shortcuts, and no compromises. Just honest, delicious bread and pastries that bring joy to your table.</p>
+                </div>
+                <div class="about-text">
+                    <h3>Our Process</h3>
+                    <p><strong style="color: var(--primary-color);">Slow Fermentation</strong><br>We let our doughs ferment slowly, sometimes for 48+ hours, developing complex flavors and better digestibility.</p>
+                    <p><strong style="color: var(--primary-color);">Stone Oven Baking</strong><br>All breads are baked in our traditional stone oven at precise temperatures for that perfect crust.</p>
+                    <p><strong style="color: var(--primary-color);">Daily Fresh</strong><br>We close at 8 PM because we refuse to sell yesterday's bread. Everything sold is baked that day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The best sourdough in the city. I've been buying from here for 10 years and it never disappoints. The crust is always perfect!"</p>
+                    <div class="testimonial-author">- Marco D.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Maria made the most beautiful custom cake for my wedding. It was delicious and the attention to detail was incredible. Highly recommend!"</p>
+                    <div class="testimonial-author">- Sarah K.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I'm gluten-sensitive and finally found a place that takes care with their baking. Their whole grain loaves are a game changer."</p>
+                    <div class="testimonial-author">- Elena M.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"My kids wake up asking for your croissants every Saturday morning. They're seriously addictive. This place is a family treasure!"</p>
+                    <div class="testimonial-author">- James R.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Professional yet warm service. The team knows exactly what I want when I walk in. That's the kind of personal touch that matters."</p>
+                    <div class="testimonial-author">- Patricia H.</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Worth every penny. The quality of ingredients really shows. Once you taste artisan bread, store-bought can never compare."</p>
+                    <div class="testimonial-author">- David T.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Location Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="hours-section">
+                <div class="hours-content">
+                    <div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-family: 'Merriweather', serif;">Hours</h3>
+                        <ul class="hours-list">
+                            <li>
+                                <span>Monday - Friday</span>
+                                <span>7:00 AM - 8:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Saturday</span>
+                                <span>6:00 AM - 9:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Sunday</span>
+                                <span>8:00 AM - 7:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-family: 'Merriweather', serif;">Location & Contact</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">123 Main Street<br>Downtown District<br>City, State 12345</p>
+                        <p><strong style="color: var(--primary-color);">Phone:</strong> <a href="tel:+1234567890">(123) 456-7890</a></p>
+                        <p><strong style="color: var(--primary-color);">Email:</strong> <a href="mailto:hello@artisanbakery.com">hello@artisanbakery.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-section">
+                <p class="section-subtitle">Have a special request? Want to place a bulk order? We'd love to hear from you!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📍 Location</h4>
+                        <p>123 Main Street<br>Downtown</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>☎️ Call Us</h4>
+                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📧 Email</h4>
+                        <p><a href="mailto:hello@artisanbakery.com">hello@artisanbakery.com</a></p>
+                    </div>
+                </div>
+                <a href="mailto:hello@artisanbakery.com" class="cta-button">Send Inquiry</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Artisan Bakery. Handcrafted with love. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

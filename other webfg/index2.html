@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FlexGym - Transform Your Body, Transform Your Life</title>
+    <meta name="description" content="FlexGym - Premium fitness facility with professional trainers, state-of-the-art equipment, and personalized training programs.">
+    <meta name="author" content="FlexGym">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #004e89;
+            --accent: #f7931e;
+            --dark-bg: #0d1117;
+            --light-text: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f2e 100%);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--secondary) 0%, #006bb6 100%);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light-text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            margin-top: 100px;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--secondary) 0%, #006bb6 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark-bg);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--light-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trainer-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .trainer-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .trainer-avatar {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .trainer-info {
+            padding: 1.5rem;
+        }
+
+        .trainer-info h4 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .trainer-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .trainer-specialty {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.15);
+        }
+
+        .pricing-card h3 {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card .cta-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--primary);
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .transformation {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 2.5rem 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="brand">Flex<span>Gym</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#trainers">Trainers</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your <span>Body</span><br>Transform Your Life</h1>
+                <p class="hero-subtitle">Join hundreds of members achieving their fitness goals</p>
+                <a href="#pricing" class="cta-btn">Start Your Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Services</span></h2>
+                <p class="section-subtitle">Everything you need to reach your fitness goals</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💪</div>
+                    <h3>Strength Training</h3>
+                    <p>Access to premium weights, barbells, machines, and functional training equipment for building lean muscle.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏃</div>
+                    <h3>Cardio Zone</h3>
+                    <p>Latest treadmills, rowing machines, and ellipticals with integrated workout tracking and entertainment systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧘</div>
+                    <h3>Yoga & Flexibility</h3>
+                    <p>Specialized studio with daily yoga, pilates, and stretching classes for recovery and flexibility improvement.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Personal Training</h3>
+                    <p>Certified trainers providing 1-on-1 coaching, customized workout plans, and nutrition guidance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏊</div>
+                    <h3>Swimming Pool</h3>
+                    <p>Olympic-sized pool with lap lanes, aqua aerobics classes, and swimming lessons for all skill levels.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🥗</div>
+                    <h3>Nutrition Counseling</h3>
+                    <p>Work with certified nutritionists to develop meal plans that align with your fitness and health goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers -->
+    <section id="trainers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our <span>Trainers</span></h2>
+                <p class="section-subtitle">Expert coaches dedicated to your success</p>
+            </div>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-avatar">💪</div>
+                    <div class="trainer-info">
+                        <h4>Marcus Johnson</h4>
+                        <p>Head Strength Coach</p>
+                        <p class="trainer-specialty">Specializes in muscle building & strength</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">🏃</div>
+                    <div class="trainer-info">
+                        <h4>Sarah Chen</h4>
+                        <p>Cardio & Conditioning Expert</p>
+                        <p class="trainer-specialty">Marathon training & fat loss programs</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">🧘</div>
+                    <div class="trainer-info">
+                        <h4>James Wilson</h4>
+                        <p>Yoga & Flexibility Instructor</p>
+                        <p class="trainer-specialty">Yoga therapy & injury recovery</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">⚡</div>
+                    <div class="trainer-info">
+                        <h4>Emma Rodriguez</h4>
+                        <p>HIIT & Functional Fitness</p>
+                        <p class="trainer-specialty">Cross-training & athletic performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pricing <span>Plans</span></h2>
+                <p class="section-subtitle">Flexible membership options for every budget</p>
+            </div>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$29</div>
+                    <div class="price-period">per month</div>
+                    <ul>
+                        <li>✓ Gym access 24/7</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Group classes</li>
+                        <li>✗ Personal trainer</li>
+                        <li>✗ Nutrition coaching</li>
+                    </ul>
+                    <a href="#contact" class="cta-btn">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$59</div>
+                    <div class="price-period">per month</div>
+                    <ul>
+                        <li>✓ Gym access 24/7</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Group classes</li>
+                        <li>✓ 2x personal training</li>
+                        <li>✓ Nutrition coaching</li>
+                    </ul>
+                    <a href="#contact" class="cta-btn">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Elite</h3>
+                    <div class="price">$99</div>
+                    <div class="price-period">per month</div>
+                    <ul>
+                        <li>✓ Gym access 24/7</li>
+                        <li>✓ All equipment</li>
+                        <li>✓ Group classes</li>
+                        <li>✓ Unlimited training</li>
+                        <li>✓ Priority nutrition</li>
+                    </ul>
+                    <a href="#contact" class="cta-btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Member <span>Success</span> Stories</h2>
+                <p class="section-subtitle">Real transformations from real people</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I lost 40 pounds in 6 months! The trainers here are so supportive and knowledgeable. FlexGym changed my life completely."</p>
+                    <div class="testimonial-author">- Michael Torres</div>
+                    <div class="transformation">Lost 40 lbs • Built muscle • Gained confidence</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"From zero fitness to competing in my first powerlifting competition. Best investment I ever made. The community is amazing!"</p>
+                    <div class="testimonial-author">- Jessica Lee</div>
+                    <div class="transformation">Strength +150 lbs • First competition • Champion mindset</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Back pain gone, energy through the roof. The yoga and personal training combination with the trainers' guidance was perfect."</p>
+                    <div class="testimonial-author">- Robert Chen</div>
+                    <div class="transformation">Eliminated back pain • +30% energy • Pain-free</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a busy professional, FlexGym's flexible hours and quick workouts keep me on track. Results speak for themselves!"</p>
+                    <div class="testimonial-author">- Amanda Walsh</div>
+                    <div class="transformation">6-pack abs • Fit lifestyle • Sustainable habits</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The nutrition coaching combined with training is a game changer. I finally understand how to fuel my body properly."</p>
+                    <div class="testimonial-author">- David Kim</div>
+                    <div class="transformation">+25 lbs muscle • Clear nutrition plan • Long-term success</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Started with zero confidence, now I'm a group fitness instructor here! This community and staff believe in you like family."</p>
+                    <div class="testimonial-author">- Nicole Patel</div>
+                    <div class="transformation">Confidence boost • Career change • Living the dream</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" style="background: linear-gradient(135deg, var(--secondary) 0%, #006bb6 100%); text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Ready to <span>Transform</span>?</h2>
+            <p class="section-subtitle" style="color: var(--text-muted); margin-bottom: 2rem;">Join hundreds of members reaching their goals</p>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">📍 123 Fitness Avenue | 📞 (555) 123-4567 | 📧 hello@flexgym.com</p>
+            <a href="mailto:hello@flexgym.com" class="cta-btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FlexGym. Your transformation starts here. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

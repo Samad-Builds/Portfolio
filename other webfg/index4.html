@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DataFlow - Analytics Platform</title>
+    <meta name="description" content="DataFlow - Advanced analytics and business intelligence platform for data-driven decision making.">
+    <meta name="author" content="DataFlow Analytics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f1f5f9;
+            --gray: #64748b;
+            --border: #1e293b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: var(--darker);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            background: rgba(2, 6, 23, 0.8);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--darker) 0%, #0f1729 50%, #1a0b3d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stat {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-list li {
+            list-style: none;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .features-list li:before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--light);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .testimonial-role {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .member-avatar {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--light);
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .member-bio {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background: var(--darker);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--gray);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stat {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">📊 DataFlow</div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact" class="cta-button">Get Started</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Data Into Insights</h1>
+                <p class="hero-subtitle">Powerful analytics and business intelligence platform that turns raw data into actionable insights in real-time.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Start Free Trial</a>
+                    <a href="#features" class="cta-button cta-button-secondary">View Features</a>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat">
+                        <div class="stat-value">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Uptime SLA</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">200+</div>
+                        <div class="stat-label">Integrations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to unlock the power of your data</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Process and visualize millions of data points in milliseconds. Get instant insights on your business metrics as they happen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Dashboards</h3>
+                    <p>Create beautiful, interactive dashboards tailored to your business needs. Customize visualizations without coding.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Predictions</h3>
+                    <p>Leverage machine learning to predict trends, identify anomalies, and forecast future outcomes with accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-grade encryption, GDPR compliant, with role-based access control and comprehensive audit logs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Seamless Integrations</h3>
+                    <p>Connect with 200+ data sources and applications. APIs available for custom integrations in minutes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Team Collaboration</h3>
+                    <p>Share insights across teams with annotation, commenting, and real-time collaboration features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Scale as you grow. Choose the plan that fits your needs.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Starter</div>
+                    <div class="price">$49</div>
+                    <div class="price-period">per month</div>
+                    <div class="features-list">
+                        <li>Up to 10 users</li>
+                        <li>5 GB storage</li>
+                        <li>Basic dashboards</li>
+                        <li>Email support</li>
+                        <li>Monthly reports</li>
+                    </div>
+                    <a href="#contact" class="cta-button cta-button-secondary">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="badge">POPULAR</div>
+                    <div class="plan-name">Professional</div>
+                    <div class="price">$199</div>
+                    <div class="price-period">per month</div>
+                    <div class="features-list">
+                        <li>Up to 50 users</li>
+                        <li>100 GB storage</li>
+                        <li>Advanced dashboards</li>
+                        <li>AI-powered insights</li>
+                        <li>Priority support</li>
+                        <li>Custom integrations</li>
+                    </div>
+                    <a href="#contact" class="cta-button">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="price">Custom</div>
+                    <div class="price-period">Contact sales</div>
+                    <div class="features-list">
+                        <li>Unlimited users</li>
+                        <li>Unlimited storage</li>
+                        <li>All features</li>
+                        <li>Dedicated account manager</li>
+                        <li>24/7 support</li>
+                        <li>Custom SLA</li>
+                    </div>
+                    <a href="#contact" class="cta-button cta-button-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Loved by Data Teams</h2>
+            <p class="section-subtitle">See what our customers have to say</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"DataFlow has transformed how we approach data analytics. Setup took hours, not days. The ROI has been incredible."</p>
+                    <div class="testimonial-author">Sarah Chen</div>
+                    <div class="testimonial-role">VP of Analytics, TechCorp</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The AI insights feature alone is worth the investment. We've discovered trends we never would have spotted manually."</p>
+                    <div class="testimonial-author">Michael Johnson</div>
+                    <div class="testimonial-role">Data Director, FinanceFlow</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Best analytics platform we've used. The interface is intuitive, integrations are seamless, and support is exceptional."</p>
+                    <div class="testimonial-author">Emma Rodriguez</div>
+                    <div class="testimonial-role">CEO, RetailWise</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Meet the Team</h2>
+            <p class="section-subtitle">Built by data scientists, engineers, and designers</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">👨‍💼</div>
+                    <h3>David Wong</h3>
+                    <div class="member-role">Founder & CEO</div>
+                    <p class="member-bio">Former data engineering lead at Google with 12 years in analytics platforms.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👩‍💻</div>
+                    <h3>Lisa Anderson</h3>
+                    <div class="member-role">VP of Product</div>
+                    <p class="member-bio">Product strategist passionate about making data accessible to everyone.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">👨‍🔬</div>
+                    <h3>Alex Kumar</h3>
+                    <div class="member-role">Chief Data Scientist</div>
+                    <p class="member-bio">PhD in Machine Learning, published researcher in predictive analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Ready to Transform Your Data?</h2>
+                <p>Join 50,000+ companies using DataFlow to make data-driven decisions.</p>
+                <a href="mailto:hello@dataflow.app" class="cta-button" style="color: white;">Get Started Free →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DataFlow Analytics. Transforming data into decisions since 2021. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
